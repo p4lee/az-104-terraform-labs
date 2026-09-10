@@ -1,0 +1,3 @@
+resource_group_name = "rg-az104-tfstate"
+location             = "swedencentral"
+storage_account_name = "stax104tfstateXXXX"
