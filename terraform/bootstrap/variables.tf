@@ -7,7 +7,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure region for the state storage account."
-  default     = "westeurope"
+  default     = "swedencentral"
 }
 
 variable "storage_account_name" {

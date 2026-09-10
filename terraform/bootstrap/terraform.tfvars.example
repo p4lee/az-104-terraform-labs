@@ -1,3 +1,0 @@
-resource_group_name = "rg-az104-tfstate"
-location             = "westeurope"
-storage_account_name = "stax104tfstateXXXX"
