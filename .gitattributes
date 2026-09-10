@@ -1,0 +1,17 @@
+# Normalize line endings to LF for text files, regardless of the OS/editor
+# that touched them last. Without this, Windows tools (editors, terraform fmt)
+# can flip files to CRLF and every line shows as "changed" in git even though
+# nothing actually changed.
+* text=auto eol=lf
+
+*.tf text eol=lf
+*.tfvars text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Binary - don't touch line endings at all
+*.png binary
+*.jpg binary
+*.jpeg binary
