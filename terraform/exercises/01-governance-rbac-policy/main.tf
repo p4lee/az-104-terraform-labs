@@ -50,3 +50,17 @@ module "require_tag_policy" {
     }
   })
 }
+
+# Cost management: monthly budget on this resource group, with alerts at
+# 50% and 90% of the budget amount (module default). Azure Advisor cost
+# recommendations aren't included here - Advisor doesn't have a Terraform
+# resource, it's a read-only recommendation engine you check in the portal.
+module "budget" {
+  source = "../../modules/budget-alert"
+
+  name              = "budget-governance"
+  resource_group_id = module.resource_group.id
+  amount            = var.budget_amount
+  start_date        = var.budget_start_date
+  contact_emails    = [var.budget_alert_email]
+}

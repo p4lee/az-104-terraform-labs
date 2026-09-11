@@ -12,3 +12,8 @@ output "policy_assignment_id" {
   value       = module.require_tag_policy.id
   description = "Resource ID of the tag-enforcement policy assignment."
 }
+
+output "budget_id" {
+  value       = module.budget.id
+  description = "Resource ID of the cost management budget."
+}
