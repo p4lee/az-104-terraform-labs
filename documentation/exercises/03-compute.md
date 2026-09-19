@@ -1,7 +1,6 @@
 # Exercise 03 - Compute (Virtual Machines)
 
 Terraform source: `terraform/exercises/03-compute/`
-Study plan reference: `study-plan.md`, days 4-5
 Exam domain: Deploy and manage Azure compute resources (20-25% of AZ-104)
 
 ## What was built

@@ -1,6 +1,6 @@
 # Exercise 01 - Identities and governance
 
-Maps to AZ-104 study-plan.md days 1-3 and the "Manage Azure identities and
+Maps to the AZ-104 "Manage Azure identities and
 governance" exam domain (20-25% of the exam).
 
 ## What this builds

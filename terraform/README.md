@@ -1,7 +1,7 @@
 # AZ-104 Terraform portfolio
 
-Infrastructure-as-Code implementation of the hands-on exercises from
-`../documentation/study-plan.md`, built alongside AZ-104 exam prep.
+Infrastructure-as-Code implementation of hands-on labs for the Microsoft
+AZ-104 (Azure Administrator) exam, organized by exam domain.
 
 ## Layout
 
@@ -11,7 +11,7 @@ Infrastructure-as-Code implementation of the hands-on exercises from
       exercises/
         01-governance-rbac-policy/   RBAC, Azure Policy, locks, tags
         02-storage/                   planned
-        03-compute/                   planned
+        03-compute/                   VMs, disks, zones, encryption at host, scale sets
         04-networking/                planned
         05-monitoring-backup/         planned
 
@@ -32,8 +32,9 @@ monolithic config for everything.
 ## Order of operations
 
 1. `bootstrap/` - once, creates the remote state storage account
-2. `exercises/01-governance-rbac-policy/` - first hands-on exercise
-3. Remaining exercises, added as the study plan reaches each domain
+2. `exercises/01-governance-rbac-policy/` - identities and governance
+3. `exercises/03-compute/` - virtual machines
+4. Remaining exercises, added as each exam domain is covered
 
 ## Cost and safety notes
 

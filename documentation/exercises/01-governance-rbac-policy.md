@@ -1,7 +1,6 @@
 # Exercise 01 - Identities and governance
 
 Terraform source: `terraform/exercises/01-governance-rbac-policy/`
-Study plan reference: `study-plan.md`, days 1-3
 Exam domain: Manage Azure identities and governance (20-25% of AZ-104)
 
 ## What was built
