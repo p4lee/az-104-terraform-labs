@@ -1,1 +1,9 @@
 admin_ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... az104-lab"
+
+# Same values you pass to `terraform init -backend-config=...` (bootstrap outputs).
+# Used to read exercise 04's outputs (subnet IDs) from its state file.
+state_resource_group_name  = "<bootstrap resource_group_name>"
+state_storage_account_name = "<bootstrap storage_account_name>"
+
+# Set to false to remove the single VM and free its vCPU quota.
+# deploy_single_vm = false

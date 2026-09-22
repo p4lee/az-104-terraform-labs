@@ -12,7 +12,7 @@ AZ-104 (Azure Administrator) exam, organized by exam domain.
         01-governance-rbac-policy/   RBAC, Azure Policy, locks, tags
         02-storage/                   planned
         03-compute/                   VMs, disks, zones, encryption at host, scale sets
-        04-networking/                planned
+        04-networking/                shared VNet, subnets, NSGs, NAT gateway (more to come)
         05-monitoring-backup/         planned
 
 Each exercise is its own root Terraform config with its own state file,
@@ -33,8 +33,12 @@ monolithic config for everything.
 
 1. `bootstrap/` - once, creates the remote state storage account
 2. `exercises/01-governance-rbac-policy/` - identities and governance
-3. `exercises/03-compute/` - virtual machines
-4. Remaining exercises, added as each exam domain is covered
+3. `exercises/04-networking/` - shared network foundation (VNet, subnets, NSGs, NAT gateway)
+4. `exercises/03-compute/` - virtual machines and scale sets; reads subnet IDs from 04's state
+5. Remaining exercises, added as each exam domain is covered
+
+04 is applied before 03 because 03 places its VMs in 04's subnets.
+Destroy in the reverse order: 03 first, then 04.
 
 ## Cost and safety notes
 

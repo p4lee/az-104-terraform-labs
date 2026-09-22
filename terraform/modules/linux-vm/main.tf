@@ -45,6 +45,13 @@ resource "azurerm_linux_virtual_machine" "this" {
   }
 
   tags = var.tags
+
+  # Azure turns VM agent platform updates on by itself after deployment.
+  # Ignoring this attribute stops Terraform from switching it back to the
+  # provider's default (false) on every apply.
+  lifecycle {
+    ignore_changes = [vm_agent_platform_updates_enabled]
+  }
 }
 
 resource "azurerm_managed_disk" "data" {
