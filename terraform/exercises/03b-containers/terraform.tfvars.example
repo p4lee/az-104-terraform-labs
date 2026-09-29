@@ -1,0 +1,3 @@
+# Both of these must be globally unique - add your own suffix.
+acr_name      = "acraz104<yoursuffix>"
+aci_dns_label = "az104-web-<yoursuffix>"

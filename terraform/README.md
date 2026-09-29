@@ -12,6 +12,7 @@ AZ-104 (Azure Administrator) exam, organized by exam domain.
         01-governance-rbac-policy/   RBAC, Azure Policy, locks, tags
         02-storage/                   planned
         03-compute/                   VMs, disks, zones, encryption at host, scale sets
+        03b-containers/               container registry, container instances, container apps
         04-networking/                shared VNet, subnets, NSGs, NAT gateway (more to come)
         05-monitoring-backup/         planned
 

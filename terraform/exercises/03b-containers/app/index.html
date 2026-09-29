@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AZ-104 container lab</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 4rem auto; max-width: 40rem; line-height: 1.5; }
+    code { background: #f2f2f2; padding: 0.1rem 0.3rem; }
+  </style>
+</head>
+<body>
+  <h1>AZ-104 container lab</h1>
+  <p>
+    This page is served from an image built with <code>az acr build</code>,
+    stored in Azure Container Registry, and pulled with a user-assigned
+    managed identity holding the <code>AcrPull</code> role.
+  </p>
+  <p>
+    The same image runs in two places: an Azure Container Instance and an
+    Azure Container App. Exercise 03b of the AZ-104 Terraform portfolio.
+  </p>
+</body>
+</html>
