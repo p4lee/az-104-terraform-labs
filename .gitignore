@@ -19,3 +19,6 @@ Thumbs.db
 
 # Project notes - not published with the portfolio
 claude.md
+
+# Deployment packages - rebuilt from the app/ folders with one command
+*.zip

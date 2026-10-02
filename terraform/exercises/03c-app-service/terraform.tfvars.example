@@ -1,0 +1,12 @@
+# Globally unique names - add your own suffix.
+app_name                    = "app-az104-<yoursuffix>"
+backup_storage_account_name = "stappbackup<yoursuffix>"
+
+# Same values you pass to `terraform init -backend-config=...` (bootstrap outputs).
+# Used to read exercise 04's DNS zone outputs in phase 2.
+state_resource_group_name  = "<bootstrap resource_group_name>"
+state_storage_account_name = "<bootstrap storage_account_name>"
+
+# Phase 2 only - leave these out until the app exists:
+# enable_custom_domain = true
+# app_inbound_ip       = "<az webapp show ... --query inboundIpAddress -o tsv>"
