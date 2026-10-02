@@ -53,3 +53,17 @@ module "nat_gateway" {
     domain  = "networking"
   }
 }
+
+# Public DNS zone for the lab domain. It lives in the networking exercise
+# because Azure DNS is a networking concern and the zone outlives any one
+# app that puts records in it. Creating the zone does nothing on its own -
+# the registrar has to point at the nameservers this zone publishes.
+resource "azurerm_dns_zone" "lab" {
+  name                = var.dns_zone_name
+  resource_group_name = module.resource_group.name
+
+  tags = {
+    project = "az-104-portfolio"
+    domain  = "networking"
+  }
+}

@@ -25,6 +25,10 @@ exercise) will be added to this exercise later.
 - A NAT gateway `nat-az104-workload` (Standard SKU, no zone) with a static,
   zone-redundant Standard public IP, attached to both subnets as their
   explicit outbound method
+- A public DNS zone for the lab domain (`cloud-consult-lab.site`). The zone
+  only becomes authoritative once the registrar's nameservers are changed
+  to the four this zone publishes (`dns_zone_name_servers` output).
+  Records for apps are added by the exercises that own those apps.
 
 ## Outputs used by other exercises
 
