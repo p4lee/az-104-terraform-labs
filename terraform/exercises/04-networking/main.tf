@@ -39,9 +39,15 @@ module "nsg" {
   subnet_id           = each.value
 }
 
-# Explicit outbound for both (private) subnets.
+# Explicit outbound for both (private) subnets, behind a switch. At roughly
+# EUR 1/day this is the only expensive thing in the exercise, and it is only
+# useful while compute is running in these subnets, so it gets turned off
+# between sessions (enable_nat_gateway = false). With it gone the subnets
+# stay private with no outbound route - the correct state for an empty
+# network.
 module "nat_gateway" {
   source = "../../modules/nat-gateway"
+  count  = var.enable_nat_gateway ? 1 : 0
 
   name                = "nat-az104-workload"
   resource_group_name = module.resource_group.name

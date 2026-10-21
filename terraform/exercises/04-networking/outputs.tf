@@ -22,8 +22,8 @@ output "subnet_ids" {
 }
 
 output "nat_public_ip" {
-  value       = module.nat_gateway.public_ip_address
-  description = "Public IP that outbound traffic from both subnets uses."
+  value       = one(module.nat_gateway[*].public_ip_address)
+  description = "Public IP that outbound traffic from both subnets uses (null when enable_nat_gateway is false)."
 }
 
 output "dns_zone_name" {

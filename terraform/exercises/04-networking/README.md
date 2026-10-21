@@ -42,6 +42,21 @@ Exercise 03 reads these through `terraform_remote_state`:
 Renaming or removing an output breaks exercise 03 at plan time - treat
 outputs as an interface.
 
+## Turning the NAT gateway off between sessions
+
+The NAT gateway and its public IP cost roughly EUR 1/day and are only
+useful while compute is running in these subnets. To remove them while
+keeping the VNet, subnets, NSGs and DNS zone (all free or near-free):
+
+    # terraform.tfvars
+    enable_nat_gateway = false
+
+`terraform apply` then destroys the gateway, its public IP and the two
+subnet associations. Set it back to `true` before applying an exercise
+that needs outbound access from these subnets - exercise 03's VMs and
+scale set instances do, and Flexible scale sets have no default outbound
+at all.
+
 ## Run it
 
     cd terraform/exercises/04-networking
