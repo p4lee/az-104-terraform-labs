@@ -13,7 +13,8 @@ AZ-104 (Azure Administrator) exam, organized by exam domain.
         02-storage/                   planned
         03-compute/                   VMs, disks, zones, encryption at host, scale sets
         03b-containers/               container registry, container instances, container apps
-        04-networking/                shared VNet, subnets, NSGs, NAT gateway (more to come)
+        03c-app-service/              plan, web app, slot swap, autoscale, backup, custom domain + TLS
+        04-networking/                shared VNet, subnets, NSGs, NAT gateway, DNS zone (more to come)
         05-monitoring-backup/         planned
 
 Each exercise is its own root Terraform config with its own state file,
@@ -36,10 +37,16 @@ monolithic config for everything.
 2. `exercises/01-governance-rbac-policy/` - identities and governance
 3. `exercises/04-networking/` - shared network foundation (VNet, subnets, NSGs, NAT gateway)
 4. `exercises/03-compute/` - virtual machines and scale sets; reads subnet IDs from 04's state
-5. Remaining exercises, added as each exam domain is covered
+5. `exercises/03b-containers/` - registry, container instance, container app (independent)
+6. `exercises/03c-app-service/` - App Service; reads the DNS zone from 04's state in phase 2
+7. Remaining exercises, added as each exam domain is covered
 
-04 is applied before 03 because 03 places its VMs in 04's subnets.
-Destroy in the reverse order: 03 first, then 04.
+04 is applied before 03 and 03c, because both read its outputs: 03 places
+its VMs in 04's subnets, and 03c writes DNS records into 04's zone.
+Destroy in the reverse order - workloads first, 04 last.
+
+ARM template and Bicep work lives outside this folder, in `/bicep`,
+because those formats are tested directly on the exam.
 
 ## Cost and safety notes
 
@@ -50,4 +57,11 @@ Destroy in the reverse order: 03 first, then 04.
 - Resource locks (`CanNotDelete`) are used deliberately on some resources;
   each exercise's README says how to remove them before `terraform destroy`.
 - Run `terraform destroy` on an exercise once you're done studying that
-  topic, to avoid burning through the $200 credit on idle resources.
+  topic. The subscription started as a free trial and is now
+  pay-as-you-go, so idle resources cost real money.
+- The expensive items, each destroyed after its exercise is documented:
+  App Service plan S1 (~EUR 60/month), NAT gateway and its public IP
+  (~EUR 33/month), container registry Basic (~EUR 4.60/month), and any
+  running VM or container instance.
+- Left running between sessions: the Terraform state storage account,
+  the DNS zone and the free networking resources - about EUR 1.50/month.

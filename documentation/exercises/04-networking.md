@@ -61,13 +61,32 @@ on. Renaming an output breaks exercise 03 at plan time.
 |---|---|---|
 | 1 | `screenshots/01-vnet-subnets.png` | Both subnets with their NSGs (`nsg-vms`, `nsg-vmss`) and address ranges |
 | 2 | `screenshots/02-nat-gateway-subnets.png` | NAT gateway attached to both subnets of `vnet-az104-workload` |
+| 3 | `screenshots/03-dns-zone-overview.png` | The DNS zone and the four Azure nameservers it publishes |
+| 4 | `screenshots/04-dns-delegation-nslookup.png` | `nslookup -type=NS` against Google's resolver returning those nameservers - proof the registrar delegation took effect |
+| 5 | `screenshots/05-dns-zone-records.png` | Record sets after exercise 03c bound its hostnames: NS, SOA, the apex A record, the `www` CNAME and both `asuid` TXT records |
 
 Outbound was verified from the VM in exercise 03: `curl api.ipify.org`
 returned the NAT gateway's public IP (screenshot 04 of exercise 03).
 
+## Delegation, and what the zone is used for
+
+Creating the zone does nothing by itself. The domain's registrar had to be
+pointed at the four nameservers the zone publishes (`dns_zone_name_servers`
+output); until then the zone is authoritative for nobody. Delegation took
+effect within the hour and was confirmed with:
+
+    nslookup -type=NS cloud-consult-lab.site 8.8.8.8
+
+Exercise 03c then added records to this zone for its App Service custom
+domains - an apex A record, a `www` CNAME and two `asuid` TXT records -
+reading the zone name and resource group from this exercise's outputs.
+Those records were removed again when 03c was destroyed; the zone itself
+stays, so the delegation does not have to be redone.
+
 ## What this demonstrates for AZ-104
 
 - Creating virtual networks and subnets, and associating NSGs with subnets
+- Creating a public DNS zone and delegating a real domain to Azure DNS
 - Private subnets and default outbound access, including the March 2026
   change
 - NAT gateways as an explicit outbound method, and why Flexible scale sets
@@ -75,8 +94,16 @@ returned the NAT gateway's public IP (screenshot 04 of exercise 03).
 - Standard public IP SKUs and zone redundancy
 - Splitting infrastructure into layers with a stable output contract
 
+## Cost note: the NAT gateway is the expensive part
+
+VNets, subnets, NSGs and a DNS zone cost nothing or near nothing (the zone
+is about EUR 0.45/month). The NAT gateway and its public IP are roughly
+EUR 33/month and are only useful while compute is running in these subnets,
+so it is deployed when an exercise needs outbound access and removed again
+afterwards.
+
 ## Still to come in this exercise
 
 VNet peering, user-defined routes, application security groups, Azure
-Bastion, service and private endpoints, Azure DNS, load balancers, and an
-`import` exercise that brings a hand-created resource under Terraform.
+Bastion, service and private endpoints, load balancers, and an `import`
+exercise that brings a hand-created resource under Terraform.

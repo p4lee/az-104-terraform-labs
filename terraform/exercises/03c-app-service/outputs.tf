@@ -27,3 +27,11 @@ output "custom_domain_verification_id" {
   description = "Value for the asuid TXT records that prove domain ownership before a hostname can be bound."
   sensitive   = true
 }
+
+output "custom_domain_urls" {
+  value = var.enable_custom_domain ? [
+    "https://${local.apex_host}",
+    "https://${local.www_host}",
+  ] : []
+  description = "HTTPS URLs served by the custom domain bindings (empty until enable_custom_domain is true)."
+}
